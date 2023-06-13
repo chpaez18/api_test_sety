@@ -17,11 +17,17 @@ class ImportService
      */
     public function importExcel(Request $request): bool
     {
-        $request->validate([
-            'file' => 'required|mimes:xls,xlsx'
-        ]);
+        //We validate that it is an excel file
+        //--------------------------------------------------
+            $request->validate([
+                'file' => 'required|mimes:xls,xlsx'
+            ]);
+        //--------------------------------------------------
 
-        $import = new UsersImport;
-        return Excel::import($import, $request->file('file')) ? true:false;
+        //we execute the import 
+        ///--------------------------------------------------
+            $import = new UsersImport;
+            return Excel::import($import, $request->file('file')) ? true:false;
+        //--------------------------------------------------
     }
 }
